@@ -10,5 +10,6 @@ require.config({
 });
 
 require(['jquery','jqueryUI'], function ($,$UI) {
-    $( "#accordion" ).accordion();
+     $( "#accordion" ).accordion();
+    //$( "#accordion" ).find("h3:focus").css("outline","none");
 });

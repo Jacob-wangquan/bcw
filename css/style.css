@@ -14,7 +14,7 @@ div.header_phone{ margin-top:27px; margin-left: 160px; height:24px; line-height:
 .footer{background: #262a32;}
 .footerBox{width:1200px; overflow: hidden; margin: 0 auto;height:80px;line-height:80px;}
 .footerBox_about,.footerBox_help,.footerBox_join{ padding: 0 20px; color:#fff;}
-.footer_copyRight{color:#fff; font-size:14px;}
+.footer_copyRight{display: inline;padding-left: 480px;color:#fff; font-size:14px;}
 
 /*首页*/
 /*banner*/
@@ -39,9 +39,11 @@ div.header_phone{ margin-top:27px; margin-left: 160px; height:24px; line-height:
 .solveImg{width:600px;}
 
 /*搜索仓库*/
-.banner{ position:relative; left: 50%; height:420px; background: url("../images/banner-search.jpg") no-repeat; margin-left: -960px;}
-.bannerBox{ width:1200px; margin:0 auto;}
+.banner_search{height:420px; background: url("../images/banner-search.jpg") no-repeat center center;}
+.bannerBox{ width:1200px; margin:0 auto; overflow: hidden;}
 /*.bannerBox_bigTitle{padding-top:100px; text-align:center; font-size:36px; line-height:64px; color:#fff; font-weight:700; font-style:italic;}*/
+.selectBox{width:1000px; margin: 0 auto; margin-top: 240px;}
+/*.selectBox div{display: inline-block;}*/
 .searchImg{width:1098px; height:340px; margin: 80px auto;}
 .whMap{width:1200px; margin: 40px auto;}
 .whMap_title{ margin:40px auto;padding-top:40px;text-align: center;font-size:32px;}
@@ -52,9 +54,13 @@ div.header_phone{ margin-top:27px; margin-left: 160px; height:24px; line-height:
 #container{margin-left: 150px; padding-top: 10px; padding-left: 10px;background: white; width: 650px; height: 530px;}
 
 /*用户中心*/
-.userBox{width:1200px; margin:0 auto;}
-.userMenu{ position: fixed; top:130px; width:240px; border-radius:4px; background: #323232; color:#ff9900}
-.userMenu_title{font-size:18px;}
+.userBox{width:1200px; margin:50px auto;}
+.userMenu{ position: fixed; top:130px; width:240px;padding-bottom: 40px; border-radius:4px; background: #323232; color:#ff9900}
+.userMenu_title{height:120px;line-height:120px; text-align:center; font-size:24px;}
 .accordion-item{ background: #2a2a2a;}
-.accordion-item a{ display: block; color:#fff;}
+.accordion-item a{ display: block;height:32px; line-height: 32px; text-align: center; color:#fff;}
+#accordion h3{height:48px; line-height:48px; text-align: center; font-size: 18px;}
+#accordion h3 span{ padding-left: 10px;}
+.ui-accordion-header-active{color:#fff; }
 .userContent{width:920px;height:1800px;}
+.userContent_title{height:64px; border-radius:4px;line-height:64px; padding-left:20px; font-size: 24px; background: #fff;color:#ff9900;}
