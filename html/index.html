@@ -38,7 +38,13 @@
         </div>
     </div>
 
-    <div class="banner">banner</div>
+    <div class="flexslider">
+        <ul class="slides" >
+            <li style="background:url(../images/banner-search.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+            <li style="background:url(../images/banner-search.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+            <li style="background:url(../images/banner-search.jpg) 50% 0 no-repeat;"><a href="#"></a></li>
+        </ul>
+    </div>
 
     <div class="looking">
         <p class="looking_big">LOOKING FOR YOUR WAREHOUSE</p>
@@ -86,7 +92,9 @@
 
     </div>
 
-    <div class="connect">GIF图</div>
+    <div class="connect">
+        <img src="../images/connect_bg.jpg">
+    </div>
 
     <div class="footer">
         <div class="footerBox">
@@ -96,6 +104,16 @@
             <p class="footer_copyRight">深圳市前海百仓网供应链有限公司版权所有&nbsp;粤ICP备14063761号-2</p>
         </div>
     </div>
-    <script type="text/javascript" src="../js/require.js" data-main="../js/main"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.flexslider').flexslider({
+                directionNav: true,
+                pauseOnAction: false
+            });
+        });
+    </script>
+    <!--<script type="text/javascript" src="../js/require.js" data-main="../js/main"></script>-->
 </body>
 </html>

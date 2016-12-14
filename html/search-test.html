@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/jquery.vector-map.css">
     <link rel="stylesheet" href="../css/jquery.inputbox.css">
+    <link rel="stylesheet" href="../css/reveal.css">
 </head>
 <body>
 <div class="header height80 clearfix">
@@ -39,10 +40,8 @@
 
 <div class="banner_search">
     <div class="bannerBox">
-        <!--<p class="bannerBox_bigTitle">LOOKING FOR YOUR WAREHOUSE</p>-->
-        <!--<p class="bannerBox_smallTitle">One stop warehouse management service platform</p>-->
         <div class="selectBox">
-            <div id="test1" style="float:left;height:200px; padding-top:50px; padding-left:50px;">
+            <div id="test1" style="float:left;height:200px; padding-left:50px;">
                 <input type="hidden" class="province" value="010000"/>
                 <input type="hidden" class="city" value="010100"/>
                 <input type="hidden" class="area" value="010101"/>
@@ -57,32 +56,15 @@
                 </div>
             </div>
             <div class="kind fl">
-                <div id="dropdown">
-                    <input class="input_select" type="text" value="货品种类"/>
-                    <div class="input_arrow"></div>
-                    <ul>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                        <li><a href="JavaScript:void(0)">食品</a></li>
-                        <li><a href="JavaScript:void(0)">服装</a></li>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                        <li><a href="JavaScript:void(0)">电子产品</a></li>
-                    </ul>
-                </div>
+                <input class="input_select" id="kind"  data-reveal-id="myModal-kind" value="货品种类">
+                <div class="input_arrow"></div>
             </div>
-            <div class="selectArea fl">
-                <div id="selectArea">
-                    <input class="input_select2" type="text" value="面积/托盘"/>
-                    <div class="input_arrow"></div>
-                    <div class="selectArea_box">
-                        打发打发
-                    </div>
-                </div>
+            <div class="selectArea fl" >
+                <input class="input_select" id="selectArea" data-reveal-id="myModal-area" value="面积/托盘">
+                <div class="input_arrow"></div>
             </div>
             <div class="condition_searchBtn fl">
-                <img src="../images/phone.png">
+                <a href="#"><i class="icon-search"></i></a>
             </div>
         </div>
     </div>
@@ -107,6 +89,17 @@
     </div>
 </div>
 
+<div id="myModal-kind" class="reveal-modal">
+    <div class="insertHere-kind"></div>
+    <div class="submit-kind">确定</div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="myModal-area" class="reveal-modal">
+    <div class="insertHere-area"></div>
+    <div class="submit-area">确定</div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
 <div class="footer">
     <div class="footerBox">
         <a class="footerBox_about" href="#">关于我们</a>
@@ -117,10 +110,12 @@
 </div>
 <!--<script type="text/javascript" src="../js/require.js" data-main="../js/main"></script>-->
 <script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.reveal.js"></script>
 <script src="../js/jquery.vector-map.js"></script>
 <script src="../js/china-zh.js"></script>
 <script src="../js/jquery.inputbox.js"></script>
 <script src="../js/jquery.ganged.js"></script>
+
 <!--省市区三级联动-->
 <script type="text/javascript">
     $(function () {
@@ -128,7 +123,6 @@
 
         ];
         $('#test1').ganged({'data': data, 'width': 100, 'height': 30});
-//            $('#test2').ganged({'data': data});
     })
 
 </script>
@@ -200,31 +194,105 @@
     });
 
 </script>
-<!--货品种类-->
+<!--货品种类选择-->
 <script type="text/javascript">
     $(function () {
-        $(".input_select").click(function () {
-            var ul = $("#dropdown ul");
-            if (ul.css("display") == "none") {
-                ul.slideDown("fast");
-            } else {
-                ul.slideUp("fast");
-            }
-        });
-        $("#dropdown ul li a").click(function () {
-            var txt = $(this).text();
-            $(".input_select").val(txt);
-            $("#dropdown ul").hide();
+        var data = ['电子产品','食品','衣服','电子产品','数码3C','衣服','电子产品','食品','衣服'];
+
+        var Ul = $('<ul class="modalbox modalbox-kind"></ul>');
+        Ul.appendTo($('.insertHere-kind'));
+        for(var i = 0;i<data.length; i++){
+            var Li = $('<li class="checkbox-item">'+data[i]+'</li>');
+            Li.appendTo(Ul);
+        }
+        var lis = $('.modalbox-kind li') ;
+        for(var i= 0;i<lis.length;i++){
+            $(lis[i]).on('click',function () {
+                if($(this).hasClass('select')){
+                    $(this).removeClass('select');
+                }else{
+                    $(this).addClass('select');
+                }
+            });
+        }
+
+        $('.submit-kind').click(function () {
+            $('#myModal-kind').css('visibility','hidden');
+            $('.reveal-modal-bg').hide();
+            outPutselect();
         });
 
+        //输出选中的项
+        function outPutselect() {
+            var select = [];
+            for(var i = 0;i<lis.length; i++){
+                if($(lis[i]).hasClass('select')){
+                    select.push($(lis[i]).text());
+                }
+            }
+            if(select.length > 0) $('#kind').val(select);
+            console.log(select);
+        }
+        outPutselect();
     });
 </script>
-<!--托盘 面积选择-->
-<script type="text/javascript">
+<!--托盘与面积-->
+<script>
     $(function () {
-        $("#selectArea").click(function () {
-            $(".selectArea_box").toggle();
+        var data2 = ['10-50平米','50-100平米','100-200平米','200-500平米','500-1000平米','1000-5000平米','5000-10000平米','10000平米以上'];
+        var data3 = ['10个以下','50-100个','100-500个','500-1000个','1000-5000个','5000-10000个','10000以上'];
+
+        var Ul = $('<ul class="modalbox modalbox-area"></ul>');
+        var Ul3 = $('<ul class="modalbox modalbox-tpNum"></ul>');
+        Ul.appendTo($('.insertHere-area'));
+        Ul3.appendTo($('.insertHere-area'));
+        for(var i = 0;i<data2.length; i++){
+            var Li = $('<li class="checkbox-item">'+data2[i]+'</li>');
+            Li.appendTo(Ul);
+        }
+        var lis = $('.modalbox-area li') ;
+        for(var i= 0;i<lis.length;i++){
+            $(lis[i]).on('click',function () {
+                $(this).siblings().removeClass('select');
+                $(this).addClass('select');
+            });
+        }
+        //
+        for(var j = 0;j<data3.length; j++){
+            var Li3 = $('<li class="checkbox-item3">'+data3[j]+'</li>');
+            Li3.appendTo(Ul3);
+        }
+        var lis3 = $('.modalbox-tpNum li') ;
+        for(var k= 0;k<lis3.length;k++){
+            $(lis3[k]).on('click',function () {
+                $(this).siblings().removeClass('select');
+                $(this).addClass('select');
+            });
+        }
+
+        $('.submit-area').click(function () {
+            $('#myModal-area').css('visibility','hidden');
+            $('.reveal-modal-bg').hide();
+            outPutselect();
         });
+
+        //输出选中的项
+        function outPutselect() {
+            var selectArea = '';
+            var selectTpNum = '';
+            for(var i = 0;i<lis.length; i++){
+                if($(lis[i]).hasClass('select')){
+                    selectArea = $(lis[i]).text();
+                }
+            }
+            for(var k = 0;k<lis3.length; k++){
+                if($(lis3[k]).hasClass('select')){
+                    selectTpNum = $(lis3[k]).text();
+                }
+            }
+            if(selectArea || selectTpNum) $('#selectArea').val(selectArea+'/'+selectTpNum);
+            console.log(selectArea+'/'+selectTpNum);
+        }
     });
 </script>
 </body>

@@ -76,7 +76,7 @@
             }
         }
 
-        $(obj).find('div[name="province"]').html('<div class="opts">'+ tempStr +'</div');
+        $(obj).find('div[name="province"]').html('<div class="opts">'+ tempStr +'</div>');
         $(obj).find('div[name="province"]').inputbox({'width':currentOpts.width, 'height':currentOpts.height});
 
         return _cities;
@@ -102,7 +102,7 @@
             }
         }
 
-        $(obj).find('div[name="city"]').html('<div class="opts">'+ tempStr +'</div');
+        $(obj).find('div[name="city"]').html('<div class="opts">'+ tempStr +'</div>');
         $(obj).find('div[name="city"]').inputbox({'width':currentOpts.width, 'height':currentOpts.height});
 
         return _areas;
@@ -111,7 +111,7 @@
     function showArea(obj, areas, selectAId){
         var tempStr = defaultStr;
         var tempId = defaultId;
-        var tempName = defaultName
+        var tempName = defaultName;
         var _areas = areas? areas : [];
         var _towns = [];
 
@@ -128,7 +128,7 @@
             }
         }
 
-        $(obj).find('div[name="area"]').html('<div class="opts">'+ tempStr +'</div');
+        $(obj).find('div[name="area"]').html('<div class="opts">'+ tempStr +'</div>');
         $(obj).find('div[name="area"]').inputbox({'width':currentOpts.width, 'height':currentOpts.height});
 
         return _towns;
